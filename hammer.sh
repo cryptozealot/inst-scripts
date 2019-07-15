@@ -2,6 +2,7 @@
 
 #Usage ./hammer {total requests to make} {delay between requests in s} {endpoint} {method - PUT,GET, etc..}
 #Example ./hammer 50 0.5 http://ratings/api/rate/RD-10/3 PUT
+#screen -d -m -s hammer1 ./hammer.sh 500 0.5 http://ratings/api/rate/RD-10/3 PUT
 
 times=$1
 sleeptime=$2
