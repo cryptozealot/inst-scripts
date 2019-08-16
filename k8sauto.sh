@@ -1,6 +1,6 @@
 # remove k8s installation
 # use root because its cool
-
+swapoff -a
 kubeadm reset
 apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*   
 apt-get autoremove  
@@ -35,6 +35,8 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.l
 apt-get update
 
 # turnoff swap
+apt-get update
+apt-get upgrade
 swapoff -a
 
 #init k8s cluster
