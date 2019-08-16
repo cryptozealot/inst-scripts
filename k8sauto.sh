@@ -39,6 +39,8 @@ apt-get update
 apt-get upgrade
 swapoff -a
 
+
+
 #init k8s cluster
 kubeadm init --pod-network-cidr=10.244.0.0/16
 mkdir -p $HOME/.kube
@@ -47,6 +49,16 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
 sysctl net.bridge.bridge-nf-call-iptables=1
 export kubever=$(kubectl version | base64 | tr -d '\n')
+
+
+
+
+## TODO: Wait for kubelet to start then proceed ####
+###
+
+
+
+
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
 
 # taint node
@@ -59,6 +71,15 @@ chmod 700 get_helm.sh
 kubectl -n kube-system create serviceaccount tiller
 kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
 helm init --service-account tiller
+
+
+
+
+## TODO: Wait for tiller Pod to be deployed
+###
+
+
+
 
 # install prometheus-operator
 helm install stable/prometheus-operator
