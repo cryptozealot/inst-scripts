@@ -52,3 +52,7 @@ kubectl --kubeconfig=/etc/kubernetes/admin.conf taint nodes --all node-role.kube
 
 install -o 1000 -d /home/$(id -nu 1000)/.kube
 install -o 1000 /etc/kubernetes/admin.conf /home/$(id -nu 1000)/.kube/config
+
+ # kubectl get nodes -o json | jq .items[].spec.taints
+ # kubectl taint nodes --all node.kubernetes.io/not-ready-
+
